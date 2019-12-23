@@ -265,10 +265,6 @@ public class Column implements Writable {
             }
         }
 
-        if (this.getPrecision() != other.getPrecision()) {
-            throw new DdlException("Cannot change precision");
-        }
-
         if (this.getScale() != other.getScale()) {
             throw new DdlException("Cannot change scale");
         }

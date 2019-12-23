@@ -479,6 +479,20 @@ struct FieldTypeTraits<OLAP_FIELD_TYPE_DECIMAL> : public BaseFieldtypeTraits<OLA
         data->integer = -999999999999999999;
         data->fraction = -999999999;
     }
+    static OLAPStatus convert_from(void* dest, const void* src, const TypeInfo* src_type, MemPool* mem_pool) {
+        if (src_type->type() == FieldType::OLAP_FIELD_TYPE_DECIMAL) {
+            using SrcType = typename CppTypeTraits<OLAP_FIELD_TYPE_DECIMAL>::CppType;
+            using DstType = typename CppTypeTraits<OLAP_FIELD_TYPE_DECIMAL>::CppType;
+            SrcType src_value = *reinterpret_cast<const SrcType *>(src);
+            DstType dst_value = *reinterpret_cast<DstType *>(dest);
+            std::cout << "dst integer=" << dst_value.integer << std::endl;
+            std::cout << "dst_fraction=" << dst_value.fraction << std::endl;
+            std::cout << "src integer=" << src_value.integer << std::endl;
+            std::cout << "src_fraction=" << src_value.fraction << std::endl;
+            std::cout << "src_value=" << src_value.to_string() << std::endl;
+        }
+        return OLAP_ERR_INVALID_SCHEMA;
+    }
 };
 
 template<>
