@@ -343,6 +343,7 @@ bool RowBlockChanger::change_row_block(
                 || (newtype == OLAP_FIELD_TYPE_DATE && reftype == OLAP_FIELD_TYPE_INT)
                 || (newtype == OLAP_FIELD_TYPE_DATE && reftype == OLAP_FIELD_TYPE_VARCHAR)
                 || (newtype == OLAP_FIELD_TYPE_DATE && reftype == OLAP_FIELD_TYPE_DATETIME)
+                || (newtype == OLAP_FIELD_TYPE_DECIMAL && reftype == OLAP_FIELD_TYPE_DECIMAL)
                 || (newtype == OLAP_FIELD_TYPE_DATETIME && reftype == OLAP_FIELD_TYPE_DATE)) {
                 for (size_t row_index = 0, new_row_index = 0;
                         row_index < ref_block->row_block_info().row_num; ++row_index) {

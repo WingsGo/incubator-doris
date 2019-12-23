@@ -264,10 +264,12 @@ public class Column implements Writable {
                 throw new DdlException("Cannot shorten string length");
             }
         }
+        System.out.println("this.pre=" + this.getPrecision());
+        System.out.println("other.pre=" + other.getPrecision());
 
-        if (this.getScale() != other.getScale()) {
-            throw new DdlException("Cannot change scale");
-        }
+        System.out.println("this.scale=" + this.getScale());
+        System.out.println("other.scale=" + other.getScale());
+
     }
 
     public boolean nameEquals(String otherColName, boolean ignorePrefix) {
