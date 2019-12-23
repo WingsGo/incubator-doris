@@ -104,6 +104,7 @@ template OLAPStatus BetaRowsetWriter::_add_row(const RowCursor& row);
 template OLAPStatus BetaRowsetWriter::_add_row(const ContiguousRow& row);
 
 OLAPStatus BetaRowsetWriter::add_rowset(RowsetSharedPtr rowset) {
+    std::cout << "add_rowset" << std::endl;
     assert(rowset->rowset_meta()->rowset_type() == BETA_ROWSET);
     RETURN_NOT_OK(rowset->link_files_to(_context.rowset_path_prefix, _context.rowset_id));
     _num_rows_written += rowset->num_rows();
@@ -120,6 +121,7 @@ OLAPStatus BetaRowsetWriter::add_rowset(RowsetSharedPtr rowset) {
 OLAPStatus BetaRowsetWriter::add_rowset_for_linked_schema_change(RowsetSharedPtr rowset,
                                                                  const SchemaMapping& schema_mapping) {
     // TODO use schema_mapping to transfer zonemap
+    std::cout << "BetaRowsetWriter::add_rowset_for_linked_schema_change" << std::endl;
     return add_rowset(rowset);
 }
 

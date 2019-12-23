@@ -708,6 +708,7 @@ bool LinkedSchemaChange::process(
         RowsetWriter* new_rowset_writer,
         TabletSharedPtr new_tablet,
         TabletSharedPtr base_tablet) {
+    std::cout << "LinkedSchemaChange::process" << std::endl;
     OLAPStatus status = new_rowset_writer->add_rowset_for_linked_schema_change(
                             rowset_reader->rowset(), _row_block_changer.get_schema_mapping());
     if (status != OLAP_SUCCESS) {
