@@ -124,6 +124,7 @@ public class BDBJEJournal implements Journal {
             Util.stdoutWithTime(msg);
             System.exit(-1);
         }
+        return;
     }
 
     @Override
@@ -134,7 +135,7 @@ public class BDBJEJournal implements Journal {
         
         // id is the key
         long id = nextJournalId.getAndIncrement();
-        Long idLong = id;
+        Long idLong = new Long(id);
         DatabaseEntry theKey = new DatabaseEntry();
         TupleBinding<Long> idBinding = TupleBinding.getPrimitiveBinding(Long.class);
         idBinding.objectToEntry(idLong, theKey);
